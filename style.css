@@ -1,0 +1,61 @@
+body, body * {
+    padding: 0px;
+    margin: 0px;
+    font-family: sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#app {
+    width: 1280px;
+    height: 720px;
+    border: 2px solid black;
+    box-sizing: border-box;
+}
+
+#welcome-screen { 
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {font-size: 48px;}
+
+input {
+    width: 480px;
+    margin: 50px 0;
+}
+
+input, button {
+    font-size: 28px;
+    padding: 10px;
+}
+
+button {
+    width: 200px;
+    border: 1px solid darkgrey;
+    background: #fbefef;
+    border-radius: 5px;
+}
+
+#menu {
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#game {
+    display: none;
+    position: relative;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
