@@ -2,11 +2,11 @@ let config = {
     user: userName.value,
     time: {
         startAfter: 5000,
-        betweenCards: 1800
+        betweenCards: 2500
     },
     canvas: {
-        name: gamePage,
-        width: 1280,
+        name: gameApp,
+        width: 900,
         height: 720
     },
     icons: {

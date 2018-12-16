@@ -2,7 +2,8 @@ let introPage = document.getElementById('welcome-screen');
 let userName = document.getElementsByTagName('input')[0]
 let newGame = document.getElementsByTagName('button')[0]
 let quitGame  = document.getElementsByTagName('button')[1]
-let gamePage = document.getElementById('game');
+let gamePage = document.getElementById('game-box');
+let gameApp = document.getElementById('game');
 
 newGame.addEventListener('click', startGame);
 quitGame.addEventListener('click', endGame);

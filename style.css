@@ -52,10 +52,20 @@ button {
     justify-content: space-between;
 }
 
-#game {
+#game-box {
     display: none;
     position: relative;
     top: 0;
     width: 100%;
     height: 100%;
+}
+
+#game {
+    width: 900px;
+    height: 100%;
+}
+
+#game-info {
+    width: 380px;
+    height: 100%;;
 }
