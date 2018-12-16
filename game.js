@@ -133,7 +133,7 @@ function MemoryGame(config) {
                 this.matched = true;
             }
             else {
-                this.time = setTimeout(this.noMatch, this.config.time.betweenCards);
+                this.timeout = setTimeout(this.noMatch, this.config.time.betweenCards);
             }
         }
     }
