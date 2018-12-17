@@ -1,5 +1,4 @@
 let config = {
-    user: userName.value,
     time: {
         startAfter: 5000,
         betweenCards: 2500
@@ -14,7 +13,7 @@ let config = {
         size: {
             width: 64,
             height: 64,
-            marginX: 20,
+            marginX: 4,
             marginY: 4
         },
         cover: {
@@ -26,6 +25,12 @@ let config = {
             x: 10,
             y: 10
         }
+    },
+    gameInfo: {
+        newGame: newGameBtn,
+        user: userName,
+        timmer: timmer,
+        score: roundScore
     }
 }
 
