@@ -66,9 +66,7 @@ function MemoryGame(config) {
     this.cards = {
         front: [],
         back: PIXI.Texture.fromImage(this.config.icons.cover.back),
-        solved: PIXI.Texture.fromImage(this.config.icons.cover.checked),
-        selected: [],
-        pairs: 0
+        solved: PIXI.Texture.fromImage(this.config.icons.cover.checked)
     }
 
     this.generateCards = () => {
@@ -220,9 +218,9 @@ function MemoryGame(config) {
         this.score.current = 0;
         this.config.screens.secondScreen.score.textContent = this.score.current;
 
-        this.container.children.forEach((child, idx) => child.texture = this.cards.front[idx])
 
-        // this.shuffleCards();
+        this.shuffleCards();
+        this.container.children.forEach((child, idx) => child.texture = this.cards.front[idx])
 
         this.stageTimeout = setTimeout(() => {
             this.container.children.forEach((child, idx) => {
