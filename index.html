@@ -15,7 +15,7 @@
             <h1>Please enter your name<br> in order to start the game<h1>
             <input type="text" value='' placeholder="Your name here">
             <div id='menu'>
-                <button type="button">Start</button>
+                <button class="new-game" type="button">Start</button>
                 <button type="button">Quit</button>
             </div>
         </div>
@@ -23,18 +23,18 @@
         <div id="game-box">
             <div id="game"></div>
             <div id="game-info">
-                <div id="new-game">
+                <div class="new-game">
                     <button type="button">New Game</button>
                 </div>
-                <div id="user">
+                <div class="user">
                     <p>User name:</p>
                     <div></div>
                 </div>
-                <div id="timmer">
+                <div class="time">
                     <p>Current round time:</p>
                     <div></div>
                 </div>
-                <div id="score">
+                <div class="score">
                     <p>Score:</p>
                     <div></div>
                 </div>
@@ -42,16 +42,22 @@
         </div>
         
         <div id="game-over">
-            <div id="user">
-
+            <div class="user">
+                <p>User name:</p>
+                <div></div>
             </div>
-            <div id="time">
-
+            <div class="time">
+                <p>Current round time:</p>
+                <div></div>
+            </div>
+            <div class="score">
+                <p>Score:</p>
+                <div></div>
             </div>
             <div id="menu">
-                <div id="new-game"></div>
-                <div id="new-player"></div>
-                <div id="guit-game"></div>
+                <button class="new-game"></button>
+                <button class="new-player"></button>
+                <button class="quit"></button>
             </div>
         </div>
     </div>

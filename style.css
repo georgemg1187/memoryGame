@@ -55,7 +55,7 @@ button {
     justify-content: space-between;
 }
 
-#game-box {
+#game-box, #game-over {
     display: none;
     position: relative;
     top: 0;

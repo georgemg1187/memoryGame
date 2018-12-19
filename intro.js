@@ -9,20 +9,22 @@ let newGameBtn = document.querySelector('#new-game button');
 let timmer = document.querySelector('#timmer div');
 let roundScore = document.querySelector('#score div');
 
-startGameBtn.addEventListener('click', startGame);
-quitGame.addEventListener('click', endGame);
+// startGameBtn.addEventListener('click', startGame);
+// quitGame.addEventListener('click', endGame);
 
-function startGame() {
-    if (userName.value.replace(/ /g, '').length != 0 ) {
-        introPage.style.display = 'none';
-        gamePage.style.display = 'flex';
 
-        var test = new MemoryGame(config);
-    } else {
-        alert ('Please enter your name');
-    }
-}
+// function startGame() {
+//     if (userName.value.replace(/ /g, '').length != 0 ) {
+//         introPage.style.display = 'none';
+//         gamePage.style.display = 'flex';
 
-function endGame() {
-    window.close();
-}
+//         let theGame = new MemoryGame(config)
+//         theGame.newGame();
+//     } else {
+//         alert ('Please enter your name');
+//     }
+// }
+
+// function endGame() {
+//     window.close();
+// }

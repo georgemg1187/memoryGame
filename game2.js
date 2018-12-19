@@ -1,5 +1,5 @@
 let gameContainer = document.getElementById('game-canvas');
-let app = new PIXI.Application(1280, 720, { transparent: true, resolution: 1 });
+let app = new PIXI.Application(1280, 720, { transparent: true, resolution: 2 });
 
 gameContainer.appendChild(app.view);
 
