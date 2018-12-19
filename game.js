@@ -9,7 +9,7 @@ let config = {
         height: 720
     },
     icons: {
-        number: 50,
+        number: 5,
         size: {
             width: 64,
             height: 64,
@@ -26,17 +26,13 @@ let config = {
             y: 10
         }
     },
-    gameInfo: {
-        newGame: newGameBtn,
-        user: userName,
-        timmer: timmer,
-        score: roundScore
-    },
-    doom: {
+
+    screens: {
         firstScreen: {
             name: document.getElementById('welcome-screen'),
             user: document.getElementsByTagName('input')[0],
-            startGame: document.getElementsByTagName('button')[0]
+            startGame: document.getElementsByTagName('button')[0],
+            quitGame: document.getElementsByTagName('button')[1],
         },
         secondScreen: {
             name: document.getElementById("game-box"),
@@ -52,7 +48,7 @@ let config = {
             score: document.querySelector('#game-over .score div'),
             newGame: document.querySelector("#game-over .new-game"),
             newPlayer: document.querySelector("#game-over .new-player"),
-            quitGame: document.getElementById("game-over .quite")
+            quitGame: document.querySelector("#game-over .quit")
         }
     }
 }
@@ -115,6 +111,7 @@ function MemoryGame(config) {
         })
 
         this.cards.selected = [];
+        if (this.cards.pairs == this.config.icons.number) { this.gameOver(); }
     }
 
     this.noMatch = () => {
@@ -126,10 +123,15 @@ function MemoryGame(config) {
     }
 
     this.gameOver = () => {
-        this.config.doom.secondScreen.name.style.display = "none";
-        this.config.doom.thirdScreen.name.style.display = "felx";
+        this.config.screens.secondScreen.name.style.display = 'none';
+        this.config.screens.thirdScreen.name.style.display = "flex";
+        
+        this.config.screens.thirdScreen.user.textContent = this.config.screens.firstScreen.user.value;
+        this.config.screens.thirdScreen.time.textContent = this.config.screens.secondScreen.time.textContent;
+        this.config.screens.thirdScreen.score.textContent = this.score.current;
     }
 
+    this.stageTimeout;
     this.cardsTimeout;
     this.matched = false;
 
@@ -169,61 +171,101 @@ function MemoryGame(config) {
             }
         }
 
-        this.config.doom.secondScreen.score.textContent = this.score.current;
-        if (this.cards.pairs == this.config.icons.number) { this.gameOver }
+        this.config.screens.secondScreen.score.textContent = this.score.current;
+
     }
 
     this.round = {
         interval: null,
-        seconds: 0,
-        minutes: 0,
-        hours: 0,
+        underTen: (no) => {
+            return no < 10 ? ('0' + no) : no;
+        },
         roundTime: () => {
-            this.round.start++;
+            this.round.seconds++;
             if (this.round.seconds == 60) {
                 this.round.seconds = 0;
-                this.minutes++;
+                this.round.minutes++;
             }
             if (this.round.minutes == 60) {
                 this.round.minutes = 0
                 this.round.hours++;
             }
+
+            this.config.screens.secondScreen.time.textContent = this.round.underTen(this.round.hours) + ' : ' + this.round.underTen(this.round.minutes) + ' : ' + this.round.underTen(this.round.seconds);
         }
     }
 
-    this.newGame = () => {
+    this.newStage = () => {
 
-        this.config.doom.secondScreen.userName.textContent = this.config.doom.firstScreen.user.value;
+        this.config.screens.firstScreen.name.style.display = 'none';
+        this.config.screens.thirdScreen.name.style.display = 'none';
+        this.config.screens.secondScreen.name.style.display = 'flex';
+        gamePage.style.display = 'flex';
+
+        clearInterval(this.round.interval);
+        clearTimeout(this.cardsTimeout);
+        clearTimeout(this.stageTimeout);
+
+        this.round.seconds = 0;
+        this.round.minutes = 0;
+        this.round.hours = 0;
+
+        this.cards.pairs = 0;
+        this.cards.selected = [];
+
+        this.config.screens.secondScreen.userName.textContent = this.config.screens.firstScreen.user.value;
+
+        this.config.screens.secondScreen.time.textContent = '00 : 00 : 00';
 
         this.score.current = 0;
-        this.config.doom.secondScreen.score.textContent = this.score.current;
+        this.config.screens.secondScreen.score.textContent = this.score.current;
 
         this.container.children.forEach((child, idx) => child.texture = this.cards.front[idx])
 
-        setTimeout(() => {
+        // this.shuffleCards();
+
+        this.stageTimeout = setTimeout(() => {
             this.container.children.forEach((child, idx) => {
                 child.interactive = true;
                 child.buttonMode = true;
 
                 child.texture = this.cards.back;
+
             })
+
+            this.round.interval = setInterval(this.round.roundTime, 1000);
+
         }, this.config.time.startAfter)
 
         this.container.children.forEach((child, idx) => child.on('click', this.userClick.bind(false, child, idx)));
     }
 
     this.startGame = () => {
-        if (this.config.doom.firstScreen.user.value.replace(/ /g, '').length != 0) {
-            this.config.doom.firstScreen.name.style.display = 'none';
-            gamePage.style.display = 'flex';
-
-            this.newGame();
+        if (this.config.screens.firstScreen.user.value.replace(/ /g, '').length != 0) {
+            this.newStage();
         } else {
             alert('Please enter your name');
         }
     }
 
-    this.config.doom.firstScreen.startGame.addEventListener('click', this.startGame);
+    this.quitGame = () => {
+        window.close();
+    }
+
+    this.newPlayer = () => {
+        this.config.screens.firstScreen.name.style.display = 'flex';
+        this.config.screens.thirdScreen.name.style.display = 'none';
+    }
+
+    this.config.screens.firstScreen.startGame.addEventListener('click', this.startGame);
+    this.config.screens.firstScreen.quitGame.addEventListener('click', this.quitGame);
+
+    this.config.screens.secondScreen.newGame.addEventListener('click', this.newStage);
+    
+    this.config.screens.thirdScreen.newGame.addEventListener('click', this.newStage);
+    this.config.screens.thirdScreen.newPlayer.addEventListener('click', this.newPlayer);
+    this.config.screens.thirdScreen.quitGame.addEventListener('click', this.quitGame);
+
 }
 
 let test = new MemoryGame(config)

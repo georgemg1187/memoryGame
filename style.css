@@ -27,6 +27,10 @@ body {
     align-items: center;
 }
 
+#welcome-screen .menu {
+    width: 500px;
+}
+
 h1 {
     font-size: 48px;
     text-align: center;
@@ -47,12 +51,6 @@ button {
     border: 1px solid darkgrey;
     background: #fbefef;
     border-radius: 5px;
-}
-
-#menu {
-    width: 500px;
-    display: flex;
-    justify-content: space-between;
 }
 
 #game-box, #game-over {
@@ -76,6 +74,7 @@ button {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+
     border-left: 1px solid black;
 }
 
@@ -83,3 +82,26 @@ p {
     font-size: 32px;
     font-weight: bold;
 }
+
+.player {
+    text-align: center;
+    font-size: 28px;
+    color: orange;
+}
+
+#game-over {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#game-over .menu {
+    width: 700px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#menu button {
+    margin: 0, 20px;
+}
+
