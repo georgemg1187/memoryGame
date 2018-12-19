@@ -198,7 +198,6 @@ function MemoryGame(config) {
         this.config.screens.firstScreen.name.style.display = 'none';
         this.config.screens.thirdScreen.name.style.display = 'none';
         this.config.screens.secondScreen.name.style.display = 'flex';
-        gamePage.style.display = 'flex';
 
         clearInterval(this.round.interval);
         clearTimeout(this.cardsTimeout);
@@ -220,7 +219,10 @@ function MemoryGame(config) {
 
 
         this.shuffleCards();
-        this.container.children.forEach((child, idx) => child.texture = this.cards.front[idx])
+        this.container.children.forEach((child, idx) => {
+            child.texture = this.cards.front[idx];
+            child.interactive = false;
+        })
 
         this.stageTimeout = setTimeout(() => {
             this.container.children.forEach((child, idx) => {
