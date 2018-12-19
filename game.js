@@ -9,7 +9,7 @@ let config = {
         height: 720
     },
     icons: {
-        number: 5,
+        number: 50,
         size: {
             width: 64,
             height: 64,
