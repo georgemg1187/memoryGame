@@ -9,7 +9,7 @@ let config = {
         height: 720
     },
     icons: {
-        number: 50,
+        number: 5,
         size: {
             width: 64,
             height: 64,
@@ -268,4 +268,4 @@ function MemoryGame(config) {
 
 }
 
-let test = new MemoryGame(config)
+let theMemGame = new MemoryGame(config);
